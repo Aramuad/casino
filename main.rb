@@ -42,7 +42,7 @@ class Deck
     end
     random_card = @shuffle.sample
     puts
-    puts "Your random card is: #{random_card.rank} of #{random_card.suit} (#{random_card.color})"
+    puts "Your card is: #{random_card.rank} of #{random_card.suit} (#{random_card.color})"
     puts
   end
 end
