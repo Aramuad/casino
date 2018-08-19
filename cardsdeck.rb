@@ -1,4 +1,4 @@
-require_relative 'cards'
+ require_relative 'cards'
 class Deck
  # Getter and Setter methods for rank, suit and color
   attr_accessor :cards
@@ -28,8 +28,8 @@ class Deck
     shuffle_cards
   end
   
-  def list_all_cards
-    @cards.each do |card| 
+  def list_all_cards(arr)
+    arr.each do |card| 
       puts "#{card.rank} of #{card.suit} (#{card.color})"
     end
   end
