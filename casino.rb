@@ -1,5 +1,6 @@
 require_relative 'person'
 require_relative 'blackjack'
+require_relative 'hi_low'
 
 class Casino
 
