@@ -2,6 +2,7 @@ require_relative 'person'
 require_relative 'cardsdeck'
 require_relative 'player'
 require_relative 'dealer'
+require 'colorize'
 #require 'pry'
 
 class BlackJack
@@ -21,10 +22,10 @@ class BlackJack
 
   def playerProfile
     @counter = 0
-    puts "\nWelcome #{@person.name}"
-    puts "\nYou have #{@person.bank} in your bank" 
+    puts "\nWelcome #{@person.name.capitalize}".colorize(:cyan)
+    puts "\nYou have #{@person.bank} in your bank" .colorize(:cyan)
     if @person.bank ==0 
-      puts "\nYou should have atleast $10 balance"
+      puts "\nYou should have atleast $10 balance".colorize(:cyan)
       @person.bank = 10.0
     end
      startGame
@@ -33,18 +34,18 @@ class BlackJack
   def startGame
     
     @bet =0
-    puts "\nMinimum Bet: 10"
-    puts "\nHow much do you want to bet?"
+    puts "\nMinimum Bet: 10".colorize(:cyan)
+    puts "\nHow much do you want to bet?".colorize(:cyan)
     @bet = gets.to_i
 
     if @bet >= 10
-        puts "\nDealer deal the cards"
+        puts "\nDealer deal the cards".colorize(:cyan)
         @player.initialCards
         @dealer.initialCards
         if @player.get_player_cards_value == @dealer.get_dealer_cards_value && @dealer.get_dealer_cards_value ==21
           @deck.list_all_cards(@dealer.dealer_cards)
-          puts "\nDealer card values #{@dealer.get_dealer_cards_value}"
-          puts "its a PUSH!!!"
+          puts "\nDealer card values #{@dealer.get_dealer_cards_value}".colorize(:cyan)
+          puts "its a PUSH!!!".colorize(:blue)
           ##binding.pry
           @counter += 1
           ##binding.pry
@@ -57,15 +58,15 @@ class BlackJack
           @player.p_finish = false
           @counter += 1
           ##binding.pry
-          puts "\nBLACKJACK for #{@person.name}!!\nYour new balance is #{@person.bank}"
+          puts "\nBLACKJACK for #{@person.name.capitalize}!!\nYour new balance is #{@person.bank}".colorize(:pink)
         elsif @dealer.get_dealer_cards_value == 21
           @deck.list_all_cards(@dealer.dealer_cards)
-          puts "\nDealer card values #{@dealer.get_dealer_cards_value}"
+          puts "\nDealer card values #{@dealer.get_dealer_cards_value}".colorize(:cyan)
           ##binding.pry
           @counter+=1
           ##binding.pry
           @person.bank -= @bet
-          puts "\nBLACKJACK for Dealer!!\n Your new balance is #{@person.bank}"
+          puts "\nBLACKJACK for Dealer!!\n Your new balance is #{@person.bank}".colorize(:pink)
           
         else
           #binding.pry
@@ -82,13 +83,13 @@ class BlackJack
           
           
         end
-        puts "\nNo of games #{@counter}"
-          puts "Player Balance :#{@person.bank}"
+        puts "\nNo of games #{@counter}".colorize(:cyan)
+          puts "Player Balance :#{@person.bank}".colorize(:cyan)
           if(@counter % 10 == 0 || @person.bank == 0.0)
             puts "\nDo you wanna quit?"
             quit_choice = gets.strip.downcase
               if(quit_choice != 'no')
-                puts "\nGoodBye!! See you next time"
+                puts "\nGoodBye!! See you next time".colorize(:cyan)
                 
               else
                 startGame
@@ -96,9 +97,9 @@ class BlackJack
             else
               startGame
             end 
-        puts "\nPlayer Balance :#{@person.bank}"
+        puts "\nPlayer Balance :#{@person.bank}".colorize(:cyan)
     else
-      puts "\nThe minimum bet is 10. Please place 10 or more."
+      puts "\nThe minimum bet is 10. Please place 10 or more.".colorize(:cyan)
     end
 
   end
@@ -107,13 +108,13 @@ class BlackJack
 
   def continueGame
     if @player.get_player_cards_value > @dealer.get_dealer_cards_value
-      puts "\nYou Won!"
+      puts "\nYou Won!".colorize(:green)
       @person.bank +=@bet
     elsif @player.get_player_cards_value < @dealer.get_dealer_cards_value && @dealer.get_dealer_cards_value <= 21
-      puts "\nYou Lost!"
+      puts "\nYou Lost!".colorize(:red)
       @person.bank -=@bet
     elsif @player.get_player_cards_value == @dealer.get_dealer_cards_value
-      puts "\nPUSH!"
+      puts "\nPUSH!".colorize(:blue)
     end
     ##binding.pry
     @counter = @counter + 1

@@ -1,5 +1,6 @@
 require_relative 'cardsdeck'
 require_relative 'generic'
+require 'colorize'
 #require 'pry'
 
 class Dealer
@@ -25,7 +26,7 @@ class Dealer
   end
 
   def initialCards
-    puts "\nDealer cards are"
+    puts "\nDealer cards are".colorize(:cyan)
      @dealer_cards = [@cards_deck.sample,@cards_deck.sample]
     
      puts "#{@dealer_cards[0].rank} of #{@dealer_cards[0].suit} (#{@dealer_cards[0].color})"
@@ -34,13 +35,14 @@ class Dealer
   end
 
   def dealerCardValues(bet)
-    puts "Dealer cards:"
+    puts "Dealer cards:".colorize(:cyan)
     @deck.list_all_cards(@dealer_cards)
     while get_dealer_cards_value < 17
       @dealer_cards << @cards_deck.sample 
       result_hash = @generic.hitMethod(@dealer_cards,get_dealer_cards_value)
       set_dealer_cards_value(result_hash[:card_val].to_i)
       if !result_hash[:busted]
+        puts "\nDEALER GOT BUSTED!!".colorize(:red)
         @person.bank +=bet          
           #binding.pry
           @d_finish =false
@@ -50,7 +52,7 @@ class Dealer
             @d_finish =true
       end
     end
-    puts "\nDealer final card value #{get_dealer_cards_value}"
+    puts "\nDealer final card value #{get_dealer_cards_value}".colorize(:cyan)
     puts @d_counter
     return @d_counter
   end

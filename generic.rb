@@ -36,7 +36,7 @@ class Generic
     @deck.list_all_cards(arr)
     value = cardsValue(arr)
     if value > 21
-      puts "\nYOU GOT BUSTED!!"
+      
       return {card_val:value,busted:false}
     else
       return {card_val:value,busted:true}

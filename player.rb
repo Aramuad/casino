@@ -1,6 +1,7 @@
 require_relative 'cardsdeck'
 require_relative 'generic'
 require_relative 'dealer'
+require 'colorize'
 #require 'pry'
 
 class Player < Dealer
@@ -25,24 +26,25 @@ class Player < Dealer
 
 
   def initialCards
-    puts "\nPlayer cards are\n"
+    puts "\nPlayer cards are\n".colorize(:cyan)
     @player_cards = [@cards_deck.sample,@cards_deck.sample]
     @deck.list_all_cards(@player_cards)
     set_player_cards_value(@generic.cardsValue(@player_cards).to_i)
-    puts "\nPlayer card values #{get_player_cards_value}"
+    puts "\nPlayer card values #{get_player_cards_value}".colorize(:cyan)
   end
 
   def playerCardValues(bet)
     p_counter = 0
     hit = true
     while hit == true
-      puts "\n#{@person.name}, Do you want to hit or stay"
+      puts "\n#{@person.name.capitalize}, Do you want to hit or stay".colorize(:cyan)
       choice = gets.strip.downcase=='hit' ? 1 : 0
       if choice == 1
         @player_cards << @cards_deck.sample 
         result_hash = @generic.hitMethod(@player_cards,get_player_cards_value)
         set_player_cards_value(result_hash[:card_val].to_i)
         if !result_hash[:busted]
+          puts "\n #{@person.name.capitalize} GOT BUSTED!!".colorize(:red)
           @person.bank -=bet
           hit = false
           #binding.pry
@@ -50,7 +52,7 @@ class Player < Dealer
           @p_finish =false
           #binding.pry
         end
-        puts "Player card values #{get_player_cards_value}"
+        puts "Player card values #{get_player_cards_value}".colorize(:cyan)
       else
         hit = false
         @p_finish =true
