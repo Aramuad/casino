@@ -1,15 +1,20 @@
-require 'pry'
 
 class SlotMachine
   attr_accessor :column1
   attr_accessor :slot_roll
   
-  #need to pay to play $10??
 
   def initialize
     @column1 = %w(rainbow cherry cherry pizza pizza pizza poop)
     @slot_roll = []
-    @bank = 0
+    @bank = 10
+    pay_to_play
+  end
+
+  def pay_to_play
+    puts 'Welcome to the slot machine! It costs $10 to play!'
+    puts "\u{1f308}"
+    @bank -= 10
     shuffle_slots
   end
 
@@ -49,8 +54,6 @@ class SlotMachine
     when "poop"
       poopcount
       poop_method(poopcount)
-    else
-      puts 'You loose!'
     end
   end
   end
@@ -63,6 +66,7 @@ class SlotMachine
       @bank += 250
       puts 'You win $250!'
     end
+    @bank = @bank
   end
 
   def cherry_method(cherrycount)
@@ -86,10 +90,18 @@ class SlotMachine
   end
 
   def poop_method(poopcount)
-    puts "You Loose!"
+    if poopcount == 3
+      puts "You Loose!"
+    elsif poopcount == 2
+      puts "You Loose!"
+    end
+  end
+
+  def add_money
+    #pass back to main menu
   end
 end
 
 
 slotmachine = SlotMachine.new
-
+#get rid of to run once menu is running
