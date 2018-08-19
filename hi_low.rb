@@ -15,28 +15,35 @@ def greeting
   puts "*-" * 10
   puts
   puts "Press 'Enter' to recieve your first card!"
-  binding.pry
   first_card
 end
 
+class High_low
+  attr_accessor :rank, :suit
+
+  def initialize(rank, suit)
+    @rank = rank
+    @suit = suit
   def first_card
-  gets
-  @hand = []
-  @hand << @deck.cards.sample
-  @hand.each do |card|
-    puts "-" * 14
-    puts "#{card.rank}, of #{card.suit}"
-    puts "-" * 14
-  end
-  puts
-  puts "What is your call: higher or lower?"
-  choice = gets.strip
-  case choice
+    gets
+    @hand = [].sort
+    @hand << @deck.cards.sample
+    @hand.each do |card|
+      puts "-" * 14
+      puts "#{card.rank}, of #{card.suit}"
+      puts "-" * 14
+    end
+    binding.pry
+    puts
+    puts "What is your call: higher or lower?"
+    choice = gets.strip
+    second_card
+    case choice
     when higher
       if @hand(0) > @hand(1)
         then puts "You win!"
       if @hand(0) < @hand(1)
-      puts "Better luck next time..."
+        then puts "Better luck next time..."
     when lower
       if @hand(0) < @hand(1)
         then puts "You win!"
@@ -44,9 +51,10 @@ end
         then puts "Better luck next time..."
       else
         puts "Invalid choice, please enter 'higher' or 'lower'"
+        choice
       end
-  second_card
-end
+    end
+  end
 
 def second_card
   puts "Press 'Enter' to recieve your second card!"
