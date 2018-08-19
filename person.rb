@@ -8,6 +8,12 @@ class Person
     puts "What is your initial bankroll?"
     @bank = gets.to_f
   end
+  def get_name
+    return @name
+  end
+  def get_bank_roll
+    return @bank
+  end
 end
 
   
