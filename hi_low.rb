@@ -6,7 +6,7 @@
 
 require 'pry'
 
-require_relative 'test_1.rb'
+require_relative 'main.rb'
 
 def greeting
   puts
@@ -24,53 +24,54 @@ class High_low
   def initialize(rank, suit)
     @rank = rank
     @suit = suit
+    end
+  def deal_card
+    d = Deck.new
+    end
   def first_card
     gets
     @hand = [].sort
     @hand << @deck.cards.sample
-    @hand.each do |card|
+    @hand[0] do |card|
       puts "-" * 14
       puts "#{card.rank}, of #{card.suit}"
       puts "-" * 14
     end
-    binding.pry
     puts
     puts "What is your call: higher or lower?"
     choice = gets.strip
     second_card
     case choice
     when higher
-      if @hand(0) > @hand(1)
-        then puts "You win!"
-      if @hand(0) < @hand(1)
-        then puts "Better luck next time..."
+      if @hand[0] > @hand[1]
+        puts "You win!"
+       end
+      if @hand[0] < @hand[1]
+        puts "Better luck next time..."
+       end
     when lower
-      if @hand(0) < @hand(1)
-        then puts "You win!"
-      if @hand(0) > @hand(1)
-        then puts "Better luck next time..."
-      else
+      if @hand[0] < @hand[1]
+        puts "You win!"
+       end
+      if @hand[0] > @hand[1]
+        puts "Better luck next time..."
+       end
+      elsif
         puts "Invalid choice, please enter 'higher' or 'lower'"
         choice
       end
-    end
-  end
-
-def second_card
-  puts "Press 'Enter' to recieve your second card!"
-  gets
-  @hand = []
-  @hand << @deck.cards.sample
-  @hand.each do |card|
+  def second_card
+    puts "Press 'Enter' to recieve your second card!"
+    gets
+    @hand = []
+    @hand << @deck.cards.sample
+    @hand[1] do |card|
     puts "-" * 14
     puts "#{card.rank}, of #{card.suit}"
     puts "-" * 14
+      end
+    end
   end
-end
-
-def deal_card
-  d = Deck.new
-end
 
 @deck = Deck.new
 greeting
