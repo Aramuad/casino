@@ -21,7 +21,7 @@ class Casino
       case gets.to_i
           when 1
             puts "Slots"
-            #Enter the code here
+            SlotMachine.new(@person)
           when 2
             puts "High or Low"
             #Enter the code here

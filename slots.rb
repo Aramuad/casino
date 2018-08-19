@@ -4,27 +4,30 @@ class SlotMachine
   attr_accessor :slot_roll
   
 
-  def initialize
-    @column1 = %w(rainbow cherry cherry pizza pizza pizza poop)
+  def initialize(person)
+    # @column1 = %w(rainbow cherry cherry pizza pizza pizza poop)
+    @slots = ["\u{1f308}", "\u{1f352}", "\u{1f352}", "\u{1f355}", "\u{1f355}", "\u{1f355}", "\u{1f4a9}"]
     @slot_roll = []
     @bank = 10
+    #@person = person
     pay_to_play
   end
 
   def pay_to_play
     puts 'Welcome to the slot machine! It costs $10 to play!'
-    puts "\u{1f308}"
     @bank -= 10
     shuffle_slots
   end
 
   def shuffle_slots
-   @shuffle = @column1.shuffle
+  @shuffle = @slots.shuffle
+   #@shuffle = @column1.shuffle
    generate_slots
   end
 
   def generate_slots
-    3.times { @slot_roll << @column1.sample }
+    3.times { @slot_roll << @slots.sample}
+   # 3.times { @slot_roll << @column1.sample }
     final_results
   end
 
@@ -42,16 +45,16 @@ class SlotMachine
     poopcount = 0
     @slot_roll.each do |picture|
     case picture
-    when "rainbow"
+    when "\u{1f308}"  #"rainbow"
       rainbowcount = rainbowcount + 1
       rainbow_method(rainbowcount)
-    when "cherry"
+    when "\u{1f352}" #"cherry"
       cherrycount += 1
       cherry_method(cherrycount)
-    when "pizza"
+    when "\u{1f355}" #"pizza"
       pizzacount += 1
       pizza_method(pizzacount)
-    when "poop"
+    when "\u{1f4a9}" #"poop"
       poopcount
       poop_method(poopcount)
     end
@@ -103,5 +106,5 @@ class SlotMachine
 end
 
 
-slotmachine = SlotMachine.new
+#slotmachine = SlotMachine.new
 #get rid of to run once menu is running
