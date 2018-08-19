@@ -14,7 +14,7 @@ class Deck
 
   def shuffle_cards
     @cards.shuffle
-    list_all_cards
+    #list_all_cards
   end
   
   def generate_deck
