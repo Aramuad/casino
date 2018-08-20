@@ -3,10 +3,11 @@ require_relative 'cardsdeck'
 require_relative 'player'
 require_relative 'dealer'
 require 'colorize'
+require 'artii'
 #require 'pry'
 
 class BlackJack
-
+  
   
   def initialize(person)
    
@@ -21,6 +22,8 @@ class BlackJack
   end
 
   def playerProfile
+    a = Artii::Base.new 
+puts a.asciify('BLACK JACK!')
     @counter = 0
     puts "\nWelcome #{@person.name.capitalize}".colorize(:cyan)
     puts "\nYou have #{@person.bank} in your bank" .colorize(:cyan)
@@ -124,4 +127,4 @@ class BlackJack
   end
   
 end
-#BlackJack.new
+#BlackJack.new(Person.new)
