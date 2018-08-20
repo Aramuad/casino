@@ -11,7 +11,6 @@ class Dealer
     @cards_deck = @deck.cards
     @dealer_cards = []
     @dealer_card_value = 0
-    @d_counter = 0
     @d_finish = true
     @person = person
     
@@ -29,12 +28,13 @@ class Dealer
     puts "\nDealer cards are".colorize(:cyan)
      @dealer_cards = [@cards_deck.sample,@cards_deck.sample]
     
-     puts "#{@dealer_cards[0].rank} of #{@dealer_cards[0].suit} (#{@dealer_cards[0].color})"
+     puts "#{@dealer_cards[0].rank} of #{@dealer_cards[0].suit} (#{@dealer_cards[0].color})\n"
     set_dealer_cards_value(@generic.cardsValue(@dealer_cards).to_i)
     #puts "\nDealer card values #{get_dealer_cards_value}"
   end
 
   def dealerCardValues(bet)
+    d_counter = 0
     puts "Dealer cards:".colorize(:cyan)
     @deck.list_all_cards(@dealer_cards)
     while get_dealer_cards_value < 17
@@ -46,15 +46,15 @@ class Dealer
         @person.bank +=bet          
           #binding.pry
           @d_finish =false
-          @d_counter = 1
+          d_counter = 1
           #binding.pry
           else
             @d_finish =true
       end
     end
     puts "\nDealer final card value #{get_dealer_cards_value}".colorize(:cyan)
-    puts @d_counter
-    return @d_counter
+    puts d_counter
+    return d_counter
   end
 
 end

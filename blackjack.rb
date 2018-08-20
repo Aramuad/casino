@@ -9,7 +9,7 @@ class BlackJack
 
   
   def initialize(person)
-    @deck = Deck.new
+   
     @person = person
     @player = Player.new(@person)
     @dealer = Dealer.new(@person)
@@ -32,7 +32,7 @@ class BlackJack
   end
 
   def startGame
-    
+    @deck = Deck.new
     @bet =0
     puts "\nMinimum Bet: 10".colorize(:cyan)
     puts "\nHow much do you want to bet?".colorize(:cyan)
@@ -97,7 +97,7 @@ class BlackJack
             else
               startGame
             end 
-        puts "\nPlayer Balance :#{@person.bank}".colorize(:cyan)
+        #puts "\nPlayer Balance :#{@person.bank}".colorize(:cyan)
     else
       puts "\nThe minimum bet is 10. Please place 10 or more.".colorize(:cyan)
     end
