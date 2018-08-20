@@ -25,7 +25,7 @@ class Casino
             SlotMachine.new(@person)
           when 2
             puts "High or Low"
-            #Enter the code here
+            High_low.new(@person)
           when 3 
             puts "Roulette"
             Roulette.new(@person)

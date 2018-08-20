@@ -33,7 +33,6 @@ class Deck
 
   def shuffle_cards
     @shuffle = @cards.shuffle
-    list
   end
 
   def list
@@ -48,4 +47,3 @@ class Deck
 end
 
 d = Deck.new
-# puts d.cards

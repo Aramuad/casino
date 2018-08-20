@@ -8,26 +8,23 @@ require 'pry'
 
 # require_relative 'main.rb'
 
-def greeting
-  puts
-  puts "*-" * 10
-  puts "Let's play High/Low"
-  puts "*-" * 10
-  puts
-  puts "Press 'Enter' to recieve your first card!"
-  first_card
-end
-
 class High_low
   attr_accessor :rank, :suit
 
   def initialize(rank, suit)
     @rank = rank
     @suit = suit
-    end
-  def deal_card
-    d = Deck.new
-    end
+  end
+  
+  def greeting
+    puts
+    puts "*-" * 10
+    puts "Let's play High/Low"
+    puts "*-" * 10
+    puts
+    puts "Press 'Enter' to recieve your first card!"
+  end
+  
   def first_card
     gets
     @hand = [].sort
@@ -36,12 +33,14 @@ class High_low
       puts "-" * 14
       puts "#{card.rank}, of #{card.suit}"
       puts "-" * 14
-    end
+  end
+
+  def call 
     puts
     puts "What is your call: higher or lower?"
     choice = gets.strip
     second_card
-    case choice
+    case High_low.new
     when higher
       if @hand[0] > @hand[1]
         puts "You win!"
@@ -55,23 +54,24 @@ class High_low
        end
       if @hand[0] > @hand[1]
         puts "Better luck next time..."
-       end
       elsif
-        puts "Invalid choice, please enter 'higher' or 'lower'"
-        choice
-      end
+       puts "Invalid choice, please enter 'higher' or 'lower'"
+       choice
+    end
+  end
+
   def second_card
     puts "Press 'Enter' to recieve your second card!"
     gets
-    @hand = []
+    @hand = [].sort
     @hand << @deck.cards.sample
     @hand[1] do |card|
     puts "-" * 14
     puts "#{card.rank}, of #{card.suit}"
     puts "-" * 14
-      end
     end
   end
+end
 
+High_low.new
 @deck = Deck.new
-greeting
