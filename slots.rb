@@ -4,7 +4,7 @@ class SlotMachine
   attr_accessor :slot_roll
   
 
-  def initialize(person)
+  def initialize #(person)
     # @column1 = %w(rainbow cherry cherry pizza pizza pizza poop)
     @slots = ["\u{1f308}", "\u{1f352}", "\u{1f352}", "\u{1f355}", "\u{1f355}", "\u{1f355}", "\u{1f4a9}"]
     @slot_roll = []
@@ -106,5 +106,4 @@ class SlotMachine
 end
 
 
-#slotmachine = SlotMachine.new
-#get rid of to run once menu is running
+# slotmachine = SlotMachine.new
