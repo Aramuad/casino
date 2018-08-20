@@ -28,7 +28,7 @@ class Casino
             #Enter the code here
           when 3 
             puts "Roulette"
-            #Enter the code here
+            Roulette.new(@person)
           when 4
             puts "BlackJack"
             BlackJack.new(@person)

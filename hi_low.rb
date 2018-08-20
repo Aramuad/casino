@@ -6,7 +6,7 @@
 
 require 'pry'
 
-require_relative 'main.rb'
+# require_relative 'main.rb'
 
 def greeting
   puts
